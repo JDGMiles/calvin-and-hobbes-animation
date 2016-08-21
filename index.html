@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><title>Tetrahedron Animation</title>
+<!DOCTYPE html><html><head><title>Calvin and Hobbes Animation</title>
 
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="shortcut icon" href="favicon.ico">
@@ -19,8 +19,8 @@
 		<div id="popup1" class="overlay">
 			<div class="popup">
 				<a class="close" style="right: 30px;" href="#">&times;</a>
-				<div style="font-family:Georgia; color:white; text-align:center; text-decoration:underline; font-size:45px">Tetrahedron Animation</div>
-				<span style="font-family:Georgia; font-size:120px; color:white; text-align:justify;"><a target="_blank" href="http://jdgmiles.tumblr.com/post/124620973515/49-witch-hunt-on-a-tetrahedron">...</a><br></span><br><br>
+				<div style="font-family:Georgia; color:white; text-align:center; text-decoration:underline; font-size:38px">Calvin and Hobbes Animation</div>
+				<span style="font-family:Georgia; font-size:30px; color:white; text-align:justify;"><br>A simple animation featuring my favourite comic strip characters.<br></span><br><br>
 			</div>
 		</div>
 
@@ -30,16 +30,17 @@
 </html>
 
 <script type="text/javascript">
-var field={width:500, height:500};
+var field={width:590, height:270};
 var fieldcolor="white";
 var time=0;
-var huntersize=18;
-var hunterborder=9;
 var fps=65;
-var hunter1pos=50;
-var hunter2pos=54;
-var hunter3xpos=250;
-var hunter3ypos=54;
+var totalframes=1120;
+var fighting=new Image();
+fighting.src="Fighting.png";
+var laughing=new Image();
+laughing.src="Laughing.png";
+var sleeping=new Image();
+sleeping.src="Sleeping.png";
 
 var canvas = document.getElementById("canvas"),
     ctx = canvas.getContext("2d");
@@ -49,67 +50,160 @@ canvas.height = field.height;
 
 function draw(){
 
-ctx.fillStyle=fieldcolor;
-ctx.fillRect(0,0,field.width,field.height);
+if(time<180){
+	ctx.fillStyle=fieldcolor;
+	roundRect(ctx, 0, 0, field.width, field.height, 60, true);
+	ctx.save();
+	ctx.translate(70+2*time,130);
+	ctx.rotate(0.065*time+3);
+	ctx.drawImage(fighting, -100, -102);
+	ctx.restore();
+}
 
-ctx.beginPath();
-ctx.moveTo(50,400);
-ctx.lineTo(250,54);
-ctx.lineTo(450,400);
-ctx.closePath();
-ctx.strokeStyle="black";
-ctx.lineWidth=9;
-ctx.stroke();
+if(time>179 && time<240){
+	ctx.fillStyle="black";
+	ctx.fillRect(0, 0, field.width, field.height);
+	ctx.fillStyle=fieldcolor;
+	roundRect(ctx, 3*time-540, 0, 540+field.width-3*time, field.height, 60, true);
+	ctx.save();
+	ctx.globalAlpha=(240-time)/60;
+	ctx.translate(70+360,130);
+	ctx.rotate(0.065*180+3);
+	ctx.drawImage(fighting, -100, -102);
+	ctx.restore();
+}
 
-ctx.beginPath();
-ctx.moveTo(50,400);
-ctx.lineTo(250,285);
-ctx.moveTo(250,54);
-ctx.lineTo(250,285);
-ctx.moveTo(450,400);
-ctx.lineTo(250,285);
-ctx.closePath();
-ctx.strokeStyle="black";
-ctx.lineWidth=7;
-ctx.stroke();
+if(time>239 && time<293){
+	ctx.fillStyle="black";
+	ctx.fillRect(0, 0, field.width, field.height);
+	ctx.fillStyle=fieldcolor;
+	roundRect(ctx, 3*time-540, 0, 540+field.width-3*time, field.height, 60, true);
+}
 
-ctx.beginPath();
-ctx.arc(hunter1pos, 400, huntersize, 0, 2 * Math.PI);
-ctx.fillStyle="#9999FF";
-ctx.lineWidth=hunterborder;
-ctx.strokeStyle="#000099";
-ctx.fill();
-ctx.stroke();
+if(time>292 && time<460){
+	ctx.fillStyle="black";
+	ctx.fillRect(0, 0, field.width, field.height);
+	ctx.fillStyle=fieldcolor;
+	roundRect(ctx, 3*292-540, 0, 540+field.width-3*292, field.height, 60, true);
+}
 
-ctx.beginPath();
-ctx.arc(250, hunter2pos, huntersize, 0, 2 * Math.PI);
-ctx.fillStyle="#9999FF";
-ctx.lineWidth=hunterborder;
-ctx.strokeStyle="#000099";
-ctx.fill();
-ctx.stroke();
+if(time>459 && time<500){
+	ctx.fillStyle="black";
+	ctx.fillRect(0, 0, field.width, field.height);
+	ctx.fillStyle=fieldcolor;
+	roundRect(ctx, 3*292-540, time-460, 540+field.width-3*292, 920+field.height-(2*time), 60, true);
+}
 
-ctx.beginPath();
-ctx.arc(hunter3xpos, hunter3ypos, huntersize, 0, 2 * Math.PI);
-ctx.fillStyle="#FF9999";
-ctx.lineWidth=hunterborder;
-ctx.strokeStyle="#990000";
-ctx.fill();
-ctx.stroke();
+if(time>499 && time<800){
+	ctx.fillStyle="black";
+	ctx.fillRect(0, 0, field.width, field.height);
+	ctx.fillStyle=fieldcolor;
+	roundRect(ctx, 3*292-540, 499-460, 540+field.width-3*292, 920+field.height-(2*499), 60, true);
+}
+
+if(time>799 && time<1050){
+	ctx.fillStyle="black";
+	ctx.fillRect(0, 0, field.width, field.height);
+	ctx.fillStyle=fieldcolor;
+	roundRect(ctx, 336-Math.floor(336*(time-800)/249), 39-Math.floor(39*(time-800)/249), 540+field.width-3*292+Math.floor(336*(time-800)/249), field.height-78+Math.floor(78*(time-800)/249), 60, true);
+}
+
+if(time>1049 && time<totalframes){
+	ctx.fillStyle="black";
+	ctx.fillRect(0, 0, field.width, field.height);
+	ctx.fillStyle=fieldcolor;
+	roundRect(ctx, 0, 0, field.width, field.height, 60, true);
+}
+
+if(time>259 && time<360){
+	ctx.save();
+	ctx.globalAlpha=(time-260)/100;
+	ctx.translate(70+360,130);
+	ctx.drawImage(laughing, -70, -55);
+	ctx.restore();
+}
+
+if(time>359 && time<460){
+	ctx.save();
+	ctx.translate(70+360,130);
+	ctx.drawImage(laughing, -70, -55);
+	ctx.restore();
+}
+
+if(time>459 && time<520){
+	ctx.save();
+	ctx.globalAlpha=(520-time)/60;
+	ctx.translate(70+360,130);
+	ctx.drawImage(laughing, -70, -55);
+	ctx.restore();
+}
+
+if(time>539 && time<640){
+	ctx.save();
+	ctx.globalAlpha=(time-540)/100;
+	ctx.translate(70+360,160);
+	ctx.drawImage(sleeping, -78, -63);
+	ctx.restore();
+}
+
+if(time>639 && time<800){
+	ctx.save();
+	ctx.translate(70+360,160);
+	ctx.drawImage(sleeping, -78, -63);
+	ctx.restore();
+}
+
+if(time>799 && time<1000){
+	ctx.save();
+	ctx.globalAlpha=(999-time)/200;
+	ctx.translate(70+360,160);
+	ctx.drawImage(sleeping, -78, -63);
+	ctx.restore();
+}
 
 time++;
-if(time<101 && time>0){hunter1pos=50+Math.floor(400*time/100); hunter3xpos=250+Math.floor(200*time/100); hunter3ypos=54+Math.floor(346*time/100);}
-if(time>200 && time<301){hunter1pos=450-Math.floor(400*(time-200)/100); hunter3xpos=250-Math.floor(200*(time-200)/100); hunter3ypos=285+Math.floor(115*(time-200)/100);}
 
-if(time<201 && time>100){hunter2pos=54+Math.floor(231*(time-100)/100); hunter3xpos=450-Math.floor(200*(time-100)/100); hunter3ypos=400-Math.floor(115*(time-100)/100);}
-if(time<401 && time>300){hunter2pos=285-Math.floor(231*(time-300)/100); hunter3xpos=50+Math.floor(200*(time-300)/100); hunter3ypos=400-Math.floor(346*(time-300)/100);}
-
-if(time>400){time=0;}
+if(time>totalframes){time=0;}
 
 setTimeout(draw, Math.floor(1000/fps));
 
 }
 
-draw();
+function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+  if (typeof stroke == 'undefined') {
+    stroke = true;
+  }
+  if (typeof radius === 'undefined') {
+    radius = 5;
+  }
+  if (typeof radius === 'number') {
+    radius = {tl: radius, tr: radius, br: radius, bl: radius};
+  } else {
+    var defaultRadius = {tl: 0, tr: 0, br: 0, bl: 0};
+    for (var side in defaultRadius) {
+      radius[side] = radius[side] || defaultRadius[side];
+    }
+  }
+  ctx.beginPath();
+  ctx.moveTo(x + radius.tl, y);
+  ctx.lineTo(x + width - radius.tr, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + radius.tr);
+  ctx.lineTo(x + width, y + height - radius.br);
+  ctx.quadraticCurveTo(x + width, y + height, x + width - radius.br, y + height);
+  ctx.lineTo(x + radius.bl, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - radius.bl);
+  ctx.lineTo(x, y + radius.tl);
+  ctx.quadraticCurveTo(x, y, x + radius.tl, y);
+  ctx.closePath();
+  if (fill) {
+    ctx.fill();
+  }
+  if (stroke) {
+    ctx.stroke();
+  }
+
+}
+
+fighting.onload = draw();
 
 </script>
